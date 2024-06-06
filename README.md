@@ -1,1 +1,3 @@
-# Doanf2
+# Snake
+
+Simple Snake game built on Angular
