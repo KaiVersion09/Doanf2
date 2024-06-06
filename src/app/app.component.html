@@ -1,0 +1,49 @@
+<div class="app-content" *ngIf="!isGameStarted">
+  <div class="start-screen">
+    <h2>Snake Game</h2>
+    <input type="text" class="player-input" placeholder="Enter your name" [(ngModel)]="playerName" />
+    <button (click)="startGame()">Start Game</button>
+  </div>
+  
+
+  <label for="gameMode">Chọn chế độ trò chơi:</label>
+  <select class= "mode"id="gameMode" [(ngModel)]="gameMode">
+    <option value="easy">Dễ</option>
+    <option value="medium">Trung bình</option>
+    <option value="hard">Khó</option>
+  </select>
+
+  
+
+
+</div>
+
+<app-leaderboard></app-leaderboard>
+
+  <div class="annotations">
+    <h2>Bảng chú thích</h2>
+    <ul>
+      <li><span class="apple"></span> Quả táo</li>
+      <li><span class="obstacle"></span> Chướng ngại vật</li>
+      <li><span class="snake"></span> Rắn</li>
+      <li><span class="control">↑</span>Di chuyển lên (W)</li>
+      <li><span class="control">↓</span>Di chuyển xuống (S)</li>
+      <li><span class="control">←</span>Di chuyển trái (A)</li>
+      <li><span class="control">→</span>Di chuyển phải (D)</li>
+    </ul>
+  </div>
+
+<div class="app-content" *ngIf="isGameStarted">
+
+  <div class="scoreboard">Score: {{ scoreBoard }}</div>
+  <div class="board">
+    <div *ngFor="let cell of gridArray" [ngClass]="{
+        'box': true,
+        'snake-head': cell === snakeArray[snakeArray.length - 1],
+        'snake-body': snakeArray.includes(cell) && cell !== snakeArray[snakeArray.length - 1],
+        'apple': cell === apple,
+        'obstacle': obstacleArray.includes(cell)
+      }"></div>
+  </div>
+
+</div>

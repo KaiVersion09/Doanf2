@@ -1,0 +1,257 @@
+/* General styles */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.app-content {
+  background: rgba(255, 255, 255, 0.8);
+  /* Tùy chọn: để làm nổi bật nội dung */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.grid-cell {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  border: 1px solid #dc1313;
+}
+
+.start-screen {
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h2 {
+    margin-bottom: 1rem;
+    font-size: 3rem;
+    animation: slideIn 1s ease-in-out;
+    color: #02151b;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 900;
+  }
+
+  .player-input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: bounceIn 1s ease-in-out;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .player-input:focus {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    outline: none;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #242526;
+    color: #ccc;
+  }
+}
+
+/* Board styles */
+.board {
+  display: grid;
+  grid-template-columns: repeat(30, minmax(0, 20px));
+  margin: auto;
+
+  .box {
+    background-color: rgb(28, 28, 28);
+    width: 20px;
+    height: 20px;
+  }
+
+  .snake-head {
+    background-color: rgb(2, 94, 19);
+    /* Màu đầu rắn */
+    border: 1px solid rgb(1, 51, 10);
+    /* Viền đậm cho đầu rắn */
+
+  }
+
+  .snake-body {
+    background-color: rgb(5, 164, 5);
+    /* Màu thân rắn */
+    border: 3px solid rgb(1, 51, 10);
+    /* Viền đậm cho đầu rắn */
+  }
+
+  .apple {
+    background-size: cover;
+    background-position: center;
+    background-image: url('../assets/apple.png');
+    /* Đường dẫn đến hình ảnh quả táo */
+  }
+
+  .obstacle {
+    background-color: grey;
+  }
+}
+
+/* Scoreboard styles */
+.scoreboard {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: fit-content;
+  // margin: 2px auto 0px auto;
+  margin-bottom: 5px;
+  color: rgb(8, 8, 8);
+  font-weight: 900;
+  animation: slideIn 1s ease-in-out;
+
+  font-size: 1.5rem;
+}
+
+/* Keyframes for animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.annotations {
+  padding: 20px;
+  width: 250px;
+  position: fixed;
+  left: 5%;
+  top: 12%;
+  background: rgb(228, 225, 225);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  animation: fadeIn 1s ease-in-out;
+  
+
+  h2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.5rem;
+    color: #020202;
+    margin-bottom: 15px;
+    
+    text-align: center;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+
+      span {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        border-radius: 3px;
+
+        &.control {
+          font-weight: bold;
+          font-size: 1.2rem;
+          color: #333;
+        }
+
+
+        &.apple {
+          background-size: cover;
+          background-position: center;
+          background-image: url('../assets/apple.png');
+        }
+
+        &.obstacle {
+          background-color: #808080;
+        }
+
+        &.snake {
+
+          background-color: rgb(2, 94, 19);
+          /* Màu đầu rắn */
+          border: 1px solid rgb(1, 51, 10);
+        }
+      }
+    }
+  }
+}
+
+
+label {
+  display: block; /* Hiển thị label dưới dạng khối để căn giữa */
+  margin-bottom: 10px; /* Khoảng cách dưới của label */
+  font-weight: bold; /* Đậm chữ của label */
+  animation: fadeIn 1s ease-in-out;
+}
+
+.mode {
+  width: 100%; /* Độ rộng tối đa của select */
+  padding: 8px; /* Khoảng cách giữa nội dung và viền của select */
+  border: 2px solid #ccc; /* Viền select */
+  border-radius: 5px; /* Độ cong viền */
+  font-size: 16px; /* Cỡ chữ */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Hiệu ứng chuyển đổi opacity và transform */
+  opacity: 1;
+  animation: fadeIn 1s ease-in-out;
+}
+
